@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Портфолио | Аникеев Никита</title>
+    <title>Портфолио | Аникеев Никита | IT-разработчик</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -17,18 +17,71 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: #1e293b;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f172a 100%);
+            color: #e2e8f0;
             line-height: 1.5;
+            transition: background 0.3s, color 0.3s;
+            position: relative;
+            min-height: 100vh;
         }
 
+        /* Анимированный фон с частицами */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Основной контент */
         .document {
-            max-width: 1000px;
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
             margin: 40px auto;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(59, 130, 246, 0.2);
             padding: 48px 56px;
+            transition: all 0.3s;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 780px) {
@@ -38,41 +91,203 @@
             }
         }
 
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
         h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            margin-bottom: 8px;
-            color: #0f172a;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .theme-toggle {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #e2e8f0;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
         }
 
         .subhead {
-            font-size: 1rem;
-            color: #475569;
-            border-left: 3px solid #3b82f6;
-            padding-left: 16px;
+            font-size: 1.05rem;
+            color: #94a3b8;
+            border-left: 4px solid #3b82f6;
+            padding-left: 18px;
             margin: 16px 0 32px 0;
         }
 
         .section {
-            margin-bottom: 48px;
+            margin-bottom: 52px;
         }
 
         .section-title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 24px;
-            color: #0f172a;
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 28px;
             display: flex;
             align-items: center;
             gap: 12px;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+            padding-bottom: 10px;
         }
 
         .section-title i {
             color: #3b82f6;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+        }
+
+        /* ИГРОВОЙ БЛОК */
+        .game-section {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border-radius: 28px;
+            padding: 24px;
+            margin-bottom: 52px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .game-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .game-title i {
+            font-size: 1.8rem;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .score-board {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: monospace;
+        }
+
+        .score-board span {
+            color: #fbbf24;
+            font-size: 2rem;
+        }
+
+        .game-area {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            min-height: 300px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.05s linear;
+            animation: floatIcon 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(59,130,246,0.5));
+            z-index: 10;
+        }
+
+        .floating-icon:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 15px #3b82f6);
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .game-controls {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .game-btn {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+
+        .game-btn:hover {
+            background: #3b82f6;
+            transform: scale(1.02);
+        }
+
+        .click-feedback {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fbbf24;
+            z-index: 1000;
+            animation: clickPop 0.5s ease-out forwards;
+        }
+
+        @keyframes clickPop {
+            0% {
+                opacity: 1;
+                transform: scale(0.5) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.5) translateY(-50px);
+            }
         }
 
         .projects-grid {
@@ -82,16 +297,27 @@
         }
 
         .project-card {
-            background: #ffffff;
-            border: 1px solid #eef2f6;
-            border-radius: 20px;
-            padding: 24px;
-            transition: all 0.2s;
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 24px;
+            padding: 28px;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            animation: fadeInUp 0.5s ease-out;
+            animation-fill-mode: both;
         }
 
+        .project-card:nth-child(1) { animation-delay: 0.05s; }
+        .project-card:nth-child(2) { animation-delay: 0.1s; }
+        .project-card:nth-child(3) { animation-delay: 0.15s; }
+        .project-card:nth-child(4) { animation-delay: 0.2s; }
+        .project-card:nth-child(5) { animation-delay: 0.25s; }
+
         .project-card:hover {
-            border-color: #cbd5e1;
-            background: #fefefe;
+            transform: translateY(-6px);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 35px -12px rgba(59, 130, 246, 0.3);
+            background: rgba(30, 41, 59, 0.8);
         }
 
         .project-header {
@@ -100,215 +326,498 @@
             align-items: flex-start;
             flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .project-icon-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.3);
+            padding: 8px;
         }
 
         .project-title {
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .achievement-badge {
-            background: #fef9c3;
-            color: #854d0e;
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
             font-size: 0.7rem;
             font-weight: 700;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 40px;
-            display: inline-block;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .project-preview-img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin: 16px 0;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .project-preview-img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border-color: #3b82f6;
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             margin: 16px 0 12px;
         }
 
         .tech-tag {
-            background: #eef2ff;
-            padding: 4px 12px;
-            border-radius: 20px;
+            background: rgba(59, 130, 246, 0.15);
+            padding: 4px 14px;
+            border-radius: 24px;
             font-size: 0.75rem;
-            font-weight: 500;
-            color: #1e40af;
+            font-weight: 600;
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .expand-btn {
+            background: transparent;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            color: #60a5fa;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+
+        .expand-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+
+        .expand-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            margin-top: 8px;
+        }
+
+        .expand-details.show {
+            max-height: 200px;
         }
 
         .skills-wrapper {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 8px;
+            margin-top: 12px;
         }
 
         .skill-badge {
-            background: #f1f5f9;
-            padding: 6px 16px;
+            background: rgba(59, 130, 246, 0.15);
+            padding: 8px 20px;
             border-radius: 40px;
             font-size: 0.85rem;
             font-weight: 500;
-            color: #1e293b;
+            transition: 0.2s;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .skill-badge:hover {
+            background: #3b82f6;
+            color: white;
+            transform: translateY(-2px);
         }
 
         .btn-drive {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: #0f172a;
+            gap: 12px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             color: white;
-            padding: 14px 32px;
-            border-radius: 40px;
+            padding: 14px 34px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            margin: 8px 0 8px;
             transition: 0.2s;
+            font-size: 1rem;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
         }
 
         .btn-drive:hover {
-            background: #1e293b;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
         }
 
         hr {
-            margin: 24px 0;
+            margin: 28px 0;
             border: none;
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         footer {
             text-align: center;
             font-size: 0.8rem;
             color: #64748b;
-            margin-top: 24px;
+            margin-top: 32px;
         }
 
         .team-note {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 16px 20px;
-            margin-top: 20px;
-            font-size: 0.85rem;
-            color: #334155;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
     </style>
 </head>
 <body>
-<div class="document">
-    <h1>Никита Аникеев</h1>
-    <div class="subhead">
-        Python-разработчик • Автоматизация • Анализ данных • Telegram-боты
+    <div class="particles-bg" id="particles"></div>
+
+    <div class="document">
+        <div class="header-row">
+            <h1>Никита Аникеев</h1>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i> Тёмная тема
+            </button>
+        </div>
+        <div class="subhead">
+            <i class="fas fa-code"></i> Python-разработчик • Автоматизация • Анализ данных • Telegram-боты
+        </div>
+
+        <!-- Ключевые проекты -->
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-laptop-code"></i> 
+                <span>Ключевые проекты</span>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <img class="project-icon-img" src="https://img.icons8.com/color/48/telegram-app.png" alt="telegram">
+                            inuecohelper — Telegram-бот
+                        </div>
+                        <div class="achievement-badge">🏆 II место + IT-Планета 2025</div>
+                    </div>
+                    <img class="project-preview-img" src="https://placehold.co/800x250/1e293b/3b82f6?text=🤖+Telegram+Bot+Demo+-+Расписание+ЮУТУ" alt="бот скриншот">
+                    <p>Автоматический парсинг расписания с сайта moodle.inueco.ru, кэширование (обновление раз в час), офлайн-доступ, логирование действий. Интеграция с Supabase для хранения пользователей и статистики.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python / aiogram 3.x</span>
+                        <span class="tech-tag">Selenium / BS4</span>
+                        <span class="tech-tag">Supabase (PostgreSQL)</span>
+                        <span class="tech-tag">Yandex Cloud</span>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)"><i class="fas fa-chevron-down"></i> Подробнее</button>
+                    <div class="expand-details">
+                        <p><i class="fas fa-chart-line"></i> Экономия времени студентов: с 30 мин → 2 мин в день. Более 500 пользователей.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <img class="project-icon-img" src="https://img.icons8.com/color/48/automation.png" alt="n8n">
+                        ETL-воркфлоу n8n: Habr Daily Digest
+                    </div>
+                    <img class="project-preview-img" src="https://placehold.co/800x250/1e293b/8b5cf6?text=⚙️+n8n+Workflow+-+Habr+Daily+Digest" alt="n8n workflow">
+                    <p>Автоматический сбор свежих статей с RSS-ленты Хабра, парсинг описаний, формирование HTML-письма и отправка через Gmail API. Запуск по расписанию ежедневно в 9:00.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">n8n</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Gmail API</span>
+                        <span class="tech-tag">RSS</span>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)"><i class="fas fa-chevron-down"></i> Подробнее</button>
+                    <div class="expand-details">
+                        <p>Автоматизированная рассылка дайджестов, экономия 5+ часов в неделю.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <img class="project-icon-img" src="https://img.icons8.com/color/48/postgreesql.png" alt="PostgreSQL">
+                        Анализ производительности индексов (500k записей)
+                    </div>
+                    <img class="project-preview-img" src="https://placehold.co/800x250/1e293b/10b981?text=📊+SQL+Index+Performance+-+500k+Records" alt="SQL index">
+                    <p>Сравнительное тестирование таблиц с индексами и без. Ускорение поиска в 300–600 раз, сортировка в 7.7 раза, доп. объём индексов всего +11.5%.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PostgreSQL 15</span>
+                        <span class="tech-tag">Supabase</span>
+                        <span class="tech-tag">B-Tree индексы</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <img class="project-icon-img" src="https://img.icons8.com/color/48/database.png" alt="Neon">
+                        Управление ветками БД в Neon
+                    </div>
+                    <img class="project-preview-img" src="https://placehold.co/800x250/1e293b/3b82f6?text=🌿+Database+Branching+-+Neon" alt="db branching">
+                    <p>Архитектура веток: production, DEV_RUSSIAN, analytics (RFM/ABC-анализ, KPI), branch_hr (25 таблиц). Безопасное тестирование без влияния на прод.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Neon</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Аналитика</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <img class="project-icon-img" src="https://img.icons8.com/color/48/security-checked.png" alt="security">
+                        Корпоративная система учёта практик
+                    </div>
+                    <p>Система регистрации студентов и контроля долгов. Выявлены критические уязвимости (отсутствие разграничения прав доступа), предложены пути исправления.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Безопасность данных</span>
+                        <span class="tech-tag">Audit & Access control</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ИГРА: IT-Кликер -->
+        <div class="game-section">
+            <div class="game-header">
+                <div class="game-title">
+                    <i class="fas fa-gamepad"></i>
+                    <span>🎮 IT-Кликер | Поймай технологию!</span>
+                </div>
+                <div class="score-board">
+                    📊 Счёт: <span id="score">0</span>
+                </div>
+            </div>
+            <div class="game-area" id="gameArea">
+                <!-- Сюда будут добавляться плавающие иконки -->
+            </div>
+            <div class="game-controls">
+                <button class="game-btn" id="startGameBtn"><i class="fas fa-play"></i> Начать игру</button>
+                <button class="game-btn" id="resetScoreBtn"><i class="fas fa-redo"></i> Сбросить счёт</button>
+            </div>
+            <p style="text-align: center; font-size: 0.75rem; margin-top: 12px; opacity: 0.6;">
+                <i class="fas fa-mouse-pointer"></i> Кликай по плавающим иконкам Python, Docker, SQL, AI и другим! Каждый клик = +1 к счёту
+            </p>
+        </div>
+
+        <!-- Навыки -->
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-cogs"></i>
+                <span>Технологии и стек</span>
+            </div>
+            <div class="skills-wrapper">
+                <span class="skill-badge"><i class="fab fa-python"></i> Python</span>
+                <span class="skill-badge"><i class="fas fa-database"></i> SQL (PostgreSQL)</span>
+                <span class="skill-badge"><i class="fab fa-telegram"></i> aiogram</span>
+                <span class="skill-badge"><i class="fas fa-spider"></i> Selenium / BS4</span>
+                <span class="skill-badge"><i class="fas fa-exchange-alt"></i> n8n / ETL</span>
+                <span class="skill-badge"><i class="fas fa-cloud"></i> Supabase / Neon</span>
+                <span class="skill-badge"><i class="fab fa-yandex"></i> Yandex Cloud</span>
+                <span class="skill-badge"><i class="fas fa-chart-line"></i> DataLens</span>
+                <span class="skill-badge"><i class="fab fa-git-alt"></i> Git</span>
+                <span class="skill-badge"><i class="fas fa-plug"></i> REST API</span>
+                <span class="skill-badge"><i class="fas fa-bug"></i> Логирование</span>
+            </div>
+        </div>
+
+        <!-- Google Диск -->
+        <div style="margin-top: 32px;">
+            <a href="https://drive.google.com/drive/folders/1ufMstMuxl5GGSdiBM92kA8RDmCcN3NDl?usp=sharing" target="_blank" class="btn-drive">
+                <i class="fab fa-google-drive fa-lg"></i> Полное портфолио на Google Диске
+            </a>
+            <p style="font-size: 0.75rem; margin-top: 12px; opacity: 0.7;"><i class="fas fa-video"></i> Видео работы бота, сертификаты, отчёты и презентации</p>
+            
+            <hr>
+
+            <div class="team-note">
+                <i class="fas fa-users"></i> <strong>Командная работа:</strong> Пашков В. (парсинг, логика) | Аникеев Н. (Telegram-интеграция, БД, аналитика) | Тараканов Г. (тестирование)
+            </div>
+        </div>
+
+        <footer>
+            <i class="fas fa-code-branch"></i> © 2026 Никита Аникеев — портфолио с игрой IT-Кликер
+        </footer>
     </div>
 
-    <!-- Ключевые проекты -->
-    <div class="section">
-        <div class="section-title">
-            <i class="fas fa-laptop-code"></i> 
-            <span>Ключевые проекты</span>
-        </div>
-        <div class="projects-grid">
-            <!-- Проект 1: бот расписания -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title">inuecohelper — Telegram-бот для расписания ЮУТУ</div>
-                    <div class="achievement-badge">II место на конф. + IT-Планета 2025</div>
-                </div>
-                <p>Автоматический парсинг расписания с сайта moodle.inueco.ru, кэширование (обновление раз в час), офлайн-доступ, логирование действий. Интеграция с Supabase для хранения пользователей и статистики.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Python / aiogram 3.x</span>
-                    <span class="tech-tag">Selenium / BS4</span>
-                    <span class="tech-tag">Supabase (PostgreSQL)</span>
-                    <span class="tech-tag">Yandex Cloud</span>
-                </div>
-                <p style="margin-top: 12px; font-size:0.9rem; color:#2d3a5e;"><i class="fas fa-chart-line"></i> Экономия времени студентов: с 30 мин → 2 мин в день</p>
-            </div>
+    <script>
+        // Частицы на фоне
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 60; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 4 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 15 + 8 + 's';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.background = `rgba(59, ${130 + Math.random() * 50}, 246, ${Math.random() * 0.4 + 0.1})`;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
 
-            <!-- Проект 2: n8n ETL -->
-            <div class="project-card">
-                <div class="project-title">ETL-воркфлоу n8n: Habr Daily Digest</div>
-                <p>Автоматический сбор свежих статей с RSS-ленты Хабра (раздел «Программирование»), парсинг описаний, формирование HTML-письма и отправка через Gmail API. Запуск по расписанию ежедневно в 9:00.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">n8n</span>
-                    <span class="tech-tag">JavaScript (Code node)</span>
-                    <span class="tech-tag">Gmail API</span>
-                    <span class="tech-tag">RSS / HTML</span>
-                </div>
-            </div>
+        // Тёмная тема
+        let isDark = true;
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                document.body.style.background = 'linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f172a 100%)';
+                document.querySelector('.document').style.background = 'rgba(15, 23, 42, 0.92)';
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i> Тёмная тема';
+            } else {
+                document.body.style.background = 'linear-gradient(135deg, #f0f4ff 0%, #e0e8ff 100%)';
+                document.querySelector('.document').style.background = 'rgba(255, 255, 255, 0.95)';
+                document.querySelector('.document').style.color = '#1e293b';
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i> Светлая тема';
+                document.querySelectorAll('.project-card').forEach(card => card.style.background = 'rgba(255,255,255,0.9)');
+                document.querySelectorAll('.tech-tag').forEach(t => { t.style.background = 'rgba(59,130,246,0.1)'; t.style.color = '#1e40af'; });
+                document.querySelectorAll('.skill-badge').forEach(b => b.style.background = 'rgba(59,130,246,0.1)');
+            }
+        });
 
-            <!-- Проект 3: индексация Supabase -->
-            <div class="project-card">
-                <div class="project-title">Анализ производительности индексов (500k записей)</div>
-                <p>Сравнительное тестирование таблиц с индексами и без. Использовал EXPLAIN ANALYZE. Результат: ускорение поиска в 300–600 раз, сортировка ускорилась в 7.7 раза, дополнительный объём индексов всего +11.5%.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">PostgreSQL 15</span>
-                    <span class="tech-tag">Supabase</span>
-                    <span class="tech-tag">B-Tree индексы</span>
-                </div>
-            </div>
+        function toggleDetails(btn) {
+            const detailsDiv = btn.parentElement.querySelector('.expand-details');
+            detailsDiv.classList.toggle('show');
+            btn.innerHTML = detailsDiv.classList.contains('show') ? '<i class="fas fa-chevron-up"></i> Скрыть' : '<i class="fas fa-chevron-down"></i> Подробнее';
+        }
 
-            <!-- Проект 4: ветвление Neon -->
-            <div class="project-card">
-                <div class="project-title">Управление ветками БД в Neon / Supabase</div>
-                <p>Разработал архитектуру веток: production, DEV_RUSSIAN, analytics (RFM/ABC-анализ, KPI), branch_hr (25 таблиц). Изоляция данных, безопасное тестирование без влияния на прод.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Neon</span>
-                    <span class="tech-tag">PostgreSQL</span>
-                    <span class="tech-tag">Аналитика</span>
-                </div>
-            </div>
+        // ---------- ИГРА ----------
+        let gameInterval = null;
+        let score = 0;
+        let isGameActive = false;
+        const icons = [
+            'fab fa-python', 'fab fa-docker', 'fab fa-js', 'fas fa-database', 
+            'fas fa-cloud', 'fab fa-github', 'fas fa-robot', 'fas fa-brain',
+            'fas fa-code', 'fas fa-terminal', 'fab fa-aws', 'fab fa-android'
+        ];
+        const iconColors = ['#3b82f6', '#60a5fa', '#a78bfa', '#f472b6', '#34d399', '#fbbf24', '#f97316'];
 
-            <!-- Проект 5: система учёта практик + безопасность -->
-            <div class="project-card">
-                <div class="project-title">Корпоративная система учёта практик</div>
-                <p>Разработал систему регистрации студентов и контроля долгов. Выявил критические уязвимости (отсутствие разграничения прав доступа, проблемы верификации), предложил пути исправления.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Безопасность данных</span>
-                    <span class="tech-tag">Audit & Access control</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        const gameArea = document.getElementById('gameArea');
+        const scoreSpan = document.getElementById('score');
+        const startBtn = document.getElementById('startGameBtn');
+        const resetBtn = document.getElementById('resetScoreBtn');
 
-    <!-- Навыки -->
-    <div class="section">
-        <div class="section-title">
-            <i class="fas fa-cogs"></i>
-            <span>Технологии и стек</span>
-        </div>
-        <div class="skills-wrapper">
-            <span class="skill-badge">Python</span>
-            <span class="skill-badge">SQL (PostgreSQL)</span>
-            <span class="skill-badge">aiogram</span>
-            <span class="skill-badge">Selenium / BeautifulSoup</span>
-            <span class="skill-badge">n8n / ETL</span>
-            <span class="skill-badge">Supabase / Neon</span>
-            <span class="skill-badge">Yandex Cloud</span>
-            <span class="skill-badge">DataLens</span>
-            <span class="skill-badge">Git</span>
-            <span class="skill-badge">REST API</span>
-            <span class="skill-badge">Логирование / отладка</span>
-        </div>
-    </div>
+        function showClickFeedback(x, y) {
+            const feedback = document.createElement('div');
+            feedback.className = 'click-feedback';
+            feedback.innerHTML = '+1 <i class="fas fa-bolt"></i>';
+            feedback.style.left = x + 'px';
+            feedback.style.top = y + 'px';
+            document.body.appendChild(feedback);
+            setTimeout(() => feedback.remove(), 500);
+        }
 
-    <!-- Кнопка Google Диска и информация о команде -->
-    <div style="margin-top: 32px;">
-        <a href="https://drive.google.com/drive/folders/1ufMstMuxl5GGSdiBM92kA8RDmCcN3NDl?usp=sharing" target="_blank" class="btn-drive">
-            <i class="fab fa-google-drive"></i> Полное портфолио на Google Диске
-        </a>
-        <p style="font-size: 0.75rem; margin-top: 12px; color: #475569;">Видео работы бота, сертификаты, технические отчёты и презентации</p>
+        function createFloatingIcon() {
+            if (!isGameActive) return;
+            const icon = document.createElement('i');
+            const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+            icon.className = randomIcon + ' floating-icon';
+            icon.style.color = iconColors[Math.floor(Math.random() * iconColors.length)];
+            icon.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
+            const maxWidth = gameArea.clientWidth - 60;
+            const maxHeight = gameArea.clientHeight - 60;
+            icon.style.left = Math.random() * Math.max(20, maxWidth) + 'px';
+            icon.style.top = Math.random() * Math.max(20, maxHeight) + 'px';
+            icon.style.position = 'absolute';
+            icon.style.cursor = 'pointer';
+            
+            icon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (!isGameActive) return;
+                score++;
+                scoreSpan.innerText = score;
+                const rect = icon.getBoundingClientRect();
+                showClickFeedback(rect.left + 20, rect.top + 10);
+                icon.remove();
+            });
+            
+            gameArea.appendChild(icon);
+            
+            // Автоудаление через 4 секунды
+            setTimeout(() => {
+                if (icon.parentElement) icon.remove();
+            }, 4000);
+        }
+
+        function startGame() {
+            if (gameInterval) clearInterval(gameInterval);
+            // Очищаем все иконки
+            document.querySelectorAll('.floating-icon').forEach(icon => icon.remove());
+            isGameActive = true;
+            gameInterval = setInterval(() => {
+                if (isGameActive && document.querySelectorAll('.floating-icon').length < 12) {
+                    createFloatingIcon();
+                }
+            }, 800);
+            startBtn.textContent = '🎮 Игра идёт...';
+            startBtn.style.background = '#10b981';
+        }
+
+        function stopGame() {
+            isGameActive = false;
+            if (gameInterval) clearInterval(gameInterval);
+            gameInterval = null;
+            startBtn.textContent = '🎮 Начать игру';
+            startBtn.style.background = '';
+            // Очищаем иконки
+            document.querySelectorAll('.floating-icon').forEach(icon => icon.remove());
+        }
+
+        function resetScore() {
+            score = 0;
+            scoreSpan.innerText = score;
+            // Не останавливаем игру, просто обнуляем счёт
+        }
+
+        startBtn.addEventListener('click', () => {
+            if (isGameActive) {
+                stopGame();
+            } else {
+                startGame();
+            }
+        });
         
-        <hr>
+        resetBtn.addEventListener('click', resetScore);
 
-        <div class="team-note">
-            <i class="fas fa-users"></i> <strong>Командная работа:</strong> Пашков В. (парсинг, логика бота) | Аникеев Н. (Telegram-интеграция, БД, аналитика) | Тараканов Г. (тестирование, стабильность)
-        </div>
-    </div>
-
-    <footer>
-        © 2026 Никита Аникеев — портфолио. Все проекты реализованы в рамках учебной и научной деятельности.
-    </footer>
-</div>
+        // Анимация появления карточек
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Старт игры автоматически для интереса
+        setTimeout(() => startGame(), 500);
+    </script>
 </body>
 </html>
